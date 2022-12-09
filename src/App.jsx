@@ -10,14 +10,17 @@ function App() {
   useEffect(() => {
 
     // See https://javascript.info/promise-api
-    Promise.all([fetchAllPosts]).then(async () => {
+  const fetchInitialData = async () => {
 
       // Sets the const 'posts' to the value returned by fetchAllPosts()
       // Note: the 'await' keyword is required because it is an async function
       setPosts(await fetchAllPosts());
-    });
+    };
+
+    fetchInitialData();
+    
     // Declaration of dependency setPosts() for the useEffect()
-  }, [setPosts]);
+  }, []);
 
   // Maps the posts and returns a <div> containing the HTML post
   return posts.map((post) => {

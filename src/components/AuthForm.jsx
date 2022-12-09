@@ -1,6 +1,7 @@
 import React from 'react';
 import { authenticateUser } from '../api/auth';
 import { Link } from 'react-router-dom';
+import { registerUser } from '../api/apiHelper'
 
 const AuthForm = ({ name, buttonName }) => {
   const handleSubmit = (event) => {
@@ -40,6 +41,9 @@ const AuthForm = ({ name, buttonName }) => {
     </div>
   );
 };
+
+
+
 
 export const LoginAuth = () =>{ return (<AuthForm name={'login'} buttonName={'Login'} />)};
 export const SignupAuth = () =>{ return (<AuthForm name={'register'} buttonName={'Register'} />)};
