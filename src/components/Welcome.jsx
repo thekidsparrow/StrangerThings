@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-function Welcome({ isLoggedIn, me }) {
+function Welcome({ isLoggedIn, user }) {
      if (isLoggedIn)
           return (
                <section>
-                    <h1>Welcome, {me.username}!</h1>
+                    <h1>Welcome, {user.username}!</h1>
                     <p>Feel free to go check out some <Link to="/posts">posts</Link> or visit your <Link to="/profile">profile</Link> to check some messages.</p>
                </section>
           )

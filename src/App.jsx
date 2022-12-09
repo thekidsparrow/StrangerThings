@@ -7,8 +7,23 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import Login from './components/Login';
 import Welcome from './components/Welcome';
+import { getUser } from './api/auth';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState();
+  const token = window.localStorage.getItem('strange-token');
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      setUser(await getUser(token));
+    };
+
+    fetchInitialData();
+
+    // Declaration of dependency setPosts() for the useEffect()
+  }, []);
+
   return (
     <div>
       <div className="logo">
@@ -18,7 +33,7 @@ function App() {
         <Navbar />
         <div className="container">
           <Routes>
-            <Route path="/" element={<Welcome />} />
+            <Route path="/" element={<Welcome user={user} />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
