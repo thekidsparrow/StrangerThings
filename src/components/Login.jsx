@@ -1,11 +1,10 @@
 import React from "react";
-import { LoginAuth } from "./AuthForm";
+import AuthForm from "./AuthForm";
 
 const Login = () => {
-    return (
-        <LoginAuth/>
-    )
-
+     return (
+          <AuthForm name="login" buttonName="Log In" />
+     )
 }
 
 export default Login;

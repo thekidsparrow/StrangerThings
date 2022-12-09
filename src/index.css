@@ -38,6 +38,10 @@ nav {
      padding: .8em;
 }
 
+#auth-form {
+     background: #ffffff;
+}
+
 h1 {
      font-size: 1.4em;
      margin: 0 0 .4em 0;

@@ -1,35 +1,6 @@
-import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
-import { createRoot } from 'react-dom/client';
+// All imported libraries needed for this component to run
+import { useState, useEffect } from "react";
 import { fetchAllPosts } from "../api/apiHelper";
-
-
-
-// const Posts = () => {
-//     const [posts, setPosts] = useState([]);
-//     console.log('posts: ', posts);
-
-//     useEffect(() => {
-//         try {
-//             const fetchPosts = async () => {
-//                 const resp = await fetch('https://strangers-things.herokuapp.com/api/2211-ftb-et-web-ft/posts');
-//                 const data = await resp.json();
-//                 setPosts(data.data.posts);
-
-//             }
-//             fetchPosts();
-//         } catch (error) {
-//             console.error(error)
-//         }
-//     }, [])
-//     return <div>{posts.length && posts.map(post => {
-
-//         return (<div key={post._id}>{post.title}</div>)
-//     }
-
-//     )}</div>
-// }
-// export default Posts
 
 function Posts() {
     // Creates const 'posts' and a function to set it 'setPosts()'
@@ -38,15 +9,17 @@ function Posts() {
     // Triggers a function when the depency setPosts changes
     useEffect(() => {
 
-        // See https://javascript.info/promise-api
-        Promise.all([fetchAllPosts]).then(async () => {
+        const fetchInitialData = async () => {
 
             // Sets the const 'posts' to the value returned by fetchAllPosts()
             // Note: the 'await' keyword is required because it is an async function
             setPosts(await fetchAllPosts());
-        });
+        };
+
+        fetchInitialData();
+
         // Declaration of dependency setPosts() for the useEffect()
-    }, [setPosts]);
+    }, []);
 
     // Maps the posts and returns a <div> containing the HTML post
     return posts.map((post) => {
@@ -69,10 +42,3 @@ function Posts() {
 }
 
 export default Posts;
-
-
-
-
-
-
-

@@ -19,24 +19,21 @@ export const authenticateUser = async (username, password, method) => {
     });
 
     const result = await response.json();
-    // console.log(result.data);
+
     if (!result.data.token) {
       return;
     } else {
       window.localStorage.setItem("strange-token", result.data.token);
-
-      return await me();
+      
+      return await getUser(result.data.token);
     }
   } catch (error) {
     console.error(error);
   }
 };
 
-export const me = async () => {
+export const getUser = async (token) => {
   try {
-    const token = window.localStorage.getItem("strange-token");
-
-    if (token) {
       const response = await fetch(`${API_URL}/users/me`, {
         method: "GET",
         headers: {
@@ -47,9 +44,8 @@ export const me = async () => {
 
       const { data: user } = await response.json();
       console.log("hey look it is me: ", user);
+
       return user;
-    }
-    return;
   } catch (error) {
     console.error(error);
   }
